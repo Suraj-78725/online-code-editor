@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+        <!-- Include CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
+    <!-- Include CodeMirror JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.js"></script>
+    <!-- Include CodeMirror modes (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/python/python.min.js"></script>
+
+     <!-- Include CodeMirror addons (for auto-closing brackets) -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/addon/edit/closebrackets.min.js"></script>
+    <!-- Include CodeMirror themes (optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/theme/monokai.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <style>
+        .CodeMirror{
+            height: 84vh;
+            width: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row m-3">
+        <div class="col">
+            <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
+                <div class="col-12 w-25">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="50">C</option>
+                        <option value="52">Cpp</option>
+                        <option value="62">Java</option>
+                        <option value="71">Python</option>
+                    </select>
+                </div>
+
+                <!-- new code added -->
+                <div class="file-options">
+                    
+                    <div class="option file-name">
+                        <label>File name</label>
+                        <input type="text" spellcheck="false" placeholder="Enter file name">
+                      </div>
+                    <div class="option save-as">
+                        <!-- <label>Save as</label> -->
+                        <div class="select-menu">
+                          <select>
+                            <option value="text/plain">Text File (.txt)</option>
+                            <option value="text/javascript">JS File (.js)</option>
+                            <option value="text/html">HTML File (.html)</option>
+                            <option value="image/svg+xml">SVG File (.svg)</option>
+                            <option value="application/msword">Doc File (.doc)</option>
+                            <option value="application/vnd.ms-powerpoint">PPT File (.ppt)</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <button class="save-btn" type="button">Save As Text File</button>
+                    <!-- <button type="button" class="btn btn-warning">code for</button> -->
+                    <button type="button" id="run" class="btn btn-warning"><i class="bi bi-play-fill"></i></button>
+                </div>
+            </div>
+            <textarea type="text" id="editor" class="form-control" rows="100" value="hello world" aria-label="First name"></textarea>
+           
+        </div>
+        <div class="col d-flex flex-column rounded bg-dark px-4">
+            <div class="h-50">
+                <label for="Input" class="text-light mt-4 mb-2">Input</label>
+                <textarea type="text" id="input" class="form-control h-75" aria-label="Last name"></textarea>
+            </div>
+            <div class="h-50">
+                <label for="Output" class="text-light mb-2">Output</label>
+                <textarea type="text" id="output" class="form-control h-75" aria-label="Last name"></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+// Initialize CodeMirror
+// let editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+//             lineNumbers: true,
+//             tabSize: 2,
+//             mode: 'text/x-python', // Specify mode here
+//             theme: 'monokai',
+//             autoCloseBrackets: true,
+//             matchBrackets: true,
+//         });
+        
+
+
+let editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+    lineNumbers: true,
+    tabSize: 2,
+    mode: 'text/x-python',
+    theme: 'monokai',
+    autoCloseBrackets: true,
+    matchBrackets: true,
+});
+
+// Add an event listener to ensure the editor is fully initialized
+editor.on('change', function () {
+    // Your existing code for option change goes here
+});
+
+// Rest of your script remains unchanged
+
+
+
+ let output = document.getElementById('output');
+ let input = document.getElementById('input')
+ let option = document.getElementById("inlineFormSelectPref")
+ option.addEventListener("change", function () {
+        if (option.value == "62") {
+            editor.setOption("mode", "text/x-java")
+            editor.getDoc().setValue('//Always use class name Main \nclass Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}\n');
+
+            
+        }
+        else if (option.value == "71") {
+            editor.setOption("mode", "text/x-python")
+            editor.getDoc().setValue('print("Hello, World!")');
+        }
+        else if (option.value == "50") {
+            editor.setOption("mode", "text/x-csrc")
+            editor.getDoc().setValue('#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}\n');
+        }
+        else {
+            editor.setOption("mode", "text/x-c++src")
+            editor.getDoc().setValue('#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, World!" << endl;\n    return 0;\n}\n');
+        }
+    })
+
+
+    // Function to display loading gif in the output textarea
+function showLoading() {
+    output.value = "";
+    output.style.backgroundImage = "url('https://media0.giphy.com/media/jAYUbVXgESSti/200.webp?cid=790b7611a5qyi6jnnn0kjiopb4ia00ma5wf75zmtkh5c2nbs&ep=v1_gifs_search&rid=200.webp&ct=g')";
+    output.style.backgroundRepeat = "no-repeat";
+    output.style.backgroundPosition = "center";
+}
+
+// Function to remove loading gif and display the received output
+function showOutput(outputData) {
+    output.style.backgroundImage = "none"; // Remove loading.gif
+    output.value = outputData; // Display the received output
+}
+
+
+    run.addEventListener("click", async function () {
+    try {
+        const code = {
+            code: editor.getValue(),
+            input: input.value,
+            lang: option.value
+        };
+
+        showLoading()
+
+        const response = await fetch("https://compiler.codingkaze.com/compile", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(code)
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        const data = await response.text();
+
+        showOutput(data);
+
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+</script>
+
+</html>
