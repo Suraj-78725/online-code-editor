@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
     <link href="style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -176,7 +176,7 @@ function showOutput(outputData) {
 
         showLoading()
 
-        const response = await fetch("https://compiler.codingkaze.com/compile", {
+        const response = await fetch("http://localhost:8000/compile", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -195,6 +195,29 @@ function showOutput(outputData) {
         console.error(err);
     }
 });
+
+
+
+const textarea = document.querySelector("textarea"),
+fileNameInput = document.querySelector(".file-name input"),
+selectMenu = document.querySelector(".save-as select"),
+saveBtn = document.querySelector(".save-btn");
+selectMenu.addEventListener("change", () => {
+    const selectedFormat = selectMenu.options[selectMenu.selectedIndex].text;
+    saveBtn.innerText = `Save As ${selectedFormat.split(" ")[0]} File`;
+});
+saveBtn.addEventListener("click", () => {
+    // Use a setTimeout to ensure CodeMirror updates its value
+    setTimeout(() => {
+        const blob = new Blob([editor.getValue()], { type: selectMenu.value });
+        const fileUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = fileNameInput.value;
+        link.href = fileUrl;
+        link.click();
+    }, 0);
+});
+
 
 </script>
 
