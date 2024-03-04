@@ -30,34 +30,27 @@
     <style>
         .CodeMirror{
             height: 84vh;
-            width: 100vh;
+            width: 117vh;
         }
 
     .file-options
     {
     display: flex;
     }
-    .select-menu
-    {
-    height: 40px;
-    width: 25px;
-    margin-right: 90px;
-    border-radius: 5px;
-     /* padding: 20px; */
-    }
+
     .select-menu select
     {
-
     height: 40px;
-    width: 105px;
+    width: 115px;
     border-radius: 5px;
+    margin-right: 2px;
     }
 
     .file-name input
     {
     width: 120px;
     height: 40px;
-    margin-right: 15px;
+    margin-right: 3px;
     border-radius: 5px;
     }
 
@@ -65,18 +58,22 @@
     {
     height: 40px;
     border-radius: 5px;
-    margin-right: 3px;  
+    margin-right: 13px;  
     }
 
-
+    #notes
+    {
+      
+        margin-left: 5px;
+    }
     </style>
 </head>
 
 <body>
     <div class="row m-3">
-        <div class="col">
+        <div class="col-7">
             <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
-                <div class="col-12 w-25">
+                <div class="col-3">
                     <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
                     <select class="form-select" id="inlineFormSelectPref">
                         <option selected>Choose...</option>
@@ -89,9 +86,21 @@
 
                 <!-- new code added -->
                 <div id="option" class="file-options">
-
+                    <div class="option save-as">
+                        <!-- <label>Save as</label> -->
+                        <div class="select-menu" id="notes">
+                          <select>
+                            <option value="text/plain">Notes</option>
+                            <option value="text/javascript">JS Notes </option>
+                            <option value="text/html">HTML Notes </option>
+                            <option value="image/svg+xml">SVG Notes </option>
+                            <option value="application/msword">Doc Notes </option>
+                            <option value="application/vnd.ms-powerpoint">PPT Notes </option>
+                          </select>
+                        </div>
+                      </div>
                     <div class="option file-name" >
-                        <label>File name</label>
+                        <!-- <label>File name</label> -->
                         <input type="text" spellcheck="false" placeholder="Enter file name">
                       </div>
                     <div class="option save-as">
@@ -108,7 +117,7 @@
                         </div>
                       </div>
 
-                      <button class="save-btn" type="button">Save As Text File</button>
+                      <button class="save-btn" type="button" >Save As Text File</button>
                     <!-- <button type="button" class="btn btn-warning">code for</button> -->
                     <button type="button" id="run" class="btn btn-warning"><i class="bi bi-play-fill"></i></button>
                 </div>
