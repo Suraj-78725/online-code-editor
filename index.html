@@ -89,13 +89,12 @@
                     <div class="option save-as">
                         <!-- <label>Save as</label> -->
                         <div class="select-menu" id="notes">
-                          <select>
+                          <select id="noteSelect">
                             <option value="text/plain">Notes</option>
-                            <option value="text/javascript">JS Notes </option>
-                            <option value="text/html">HTML Notes </option>
-                            <option value="image/svg+xml">SVG Notes </option>
-                            <option value="application/msword">Doc Notes </option>
-                            <option value="application/vnd.ms-powerpoint">PPT Notes </option>
+                            <option value="text/C">C Notes </option>
+                            <option value="text/CPP">CPP Notes </option>
+                            <option value="text/JAVA">JAVA Notes </option>
+                            <option value="text/PYTHON">PYTHON Notes </option>
                           </select>
                         </div>
                       </div>
@@ -103,20 +102,7 @@
                         <!-- <label>File name</label> -->
                         <input type="text" spellcheck="false" placeholder="Enter file name">
                       </div>
-                    <div class="option save-as">
-                        <!-- <label>Save as</label> -->
-                        <div class="select-menu">
-                          <select>
-                            <option value="text/plain">Text File (.txt)</option>
-                            <option value="text/javascript">JS File (.js)</option>
-                            <option value="text/html">HTML File (.html)</option>
-                            <option value="image/svg+xml">SVG File (.svg)</option>
-                            <option value="application/msword">Doc File (.doc)</option>
-                            <option value="application/vnd.ms-powerpoint">PPT File (.ppt)</option>
-                          </select>
-                        </div>
-                      </div>
-
+                 
                       <button class="save-btn" type="button" >Save As Text File</button>
                     <!-- <button type="button" class="btn btn-warning">code for</button> -->
                     <button type="button" id="run" class="btn btn-warning"><i class="bi bi-play-fill"></i></button>
@@ -248,6 +234,30 @@ saveBtn.addEventListener("click", () => {
         link.click();
     }, 0);
 });
+
+
+document.getElementById('noteSelect').addEventListener('change', function() {
+    var selectedOption = this.value;
+    console.log(selectedOption);
+    if (selectedOption === 'text/C') {
+      window.location.href = 'https://drive.google.com/file/d/1-JripzcgKr0w0DNRh0j_fqde3uFw5ZjS/view'; 
+    }
+    else if(selectedOption === 'text/CPP')
+    {
+        window.location.href = 'https://notalentgeek.github.io/note/note/project/project-independent/pi-brp-beginning-c-programming/document/20170807-1504-cet-1-book-and-source-1.pdf';    
+    }
+    else if(selectedOption === 'text/JAVA')
+    {
+        window.location.href = 'https://drive.google.com/file/d/13Wo-vyiLhtVe2JqwkcOtD1gI1JTZ8389/view';    
+    }
+    else if(selectedOption === 'text/PYTHON')
+    {
+        window.location.href = 'https://static.realpython.com/python-basics-sample-chapters.pdf';    
+    }
+
+  });
+
+  
 
 // code end for saving button js file.
 </script>

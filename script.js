@@ -17,3 +17,12 @@ saveBtn.addEventListener("click", () => {
         link.click();
     }, 0);
 });
+
+document.getElementById('noteSelect').addEventListener('click', function() {
+    var selectedOption = this.value;
+    console.log(selectedOption);
+    if (selectedOption === 'text/javascript') {
+      window.location.href = 'https://drive.google.com/file/d/1-JripzcgKr0w0DNRh0j_fqde3uFw5ZjS/view'; // Replace with your Google Drive link
+    }
+  });
+  
